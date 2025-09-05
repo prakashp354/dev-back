@@ -29,8 +29,8 @@ connectDB()
 .then(()=>{
     console.log("db successfully created")
 
-app.listen(7777,()=>{
-    console.log("hi there");
+app.listen(7777,"0.0.0.0",()=>{
+    console.log("server running");
 });
 })
 .catch((err)=>{
