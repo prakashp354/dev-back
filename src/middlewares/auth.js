@@ -12,7 +12,7 @@ const userAuth = async (req, res, next) => {
 
     let decodedObj;
     try {
-      decodedObj = jwt.verify(token, "Chandu@1234560124"); // Use env var for secret in prod!
+      decodedObj = jwt.verify(token, process.env.JWT_SECRET); // Use env var for secret in prod!
     } catch (err) {
       return res.status(401).send("Invalid token");
     }
