@@ -51,7 +51,7 @@ requestRouter.post("/request/send/:status/:toUserId",
     });
     const data = await connectionRequest.save();
 
-    const emailRes = await sendEmail.run();
+    const emailRes = await sendEmail.run("a new frienf request from"+req.user.firstName,`${req.user.firstName} is ${status} in ${toUser.firstName}`);
 
     console.log(emailRes)
 
@@ -60,9 +60,8 @@ requestRouter.post("/request/send/:status/:toUserId",
       data,
     })
   }catch(err){
-    res.status(400).send("ERROR :"+err.message
-      
-    )
+    console.error("Error in send request route:", err);
+  res.status(400).json({ message: err.message })
   }
 });
 requestRouter.post("/request/review/:status/:requestId",
@@ -95,3 +94,6 @@ requestRouter.post("/request/review/:status/:requestId",
   }
 );
 module.exports=requestRouter;
+
+
+
